@@ -6,35 +6,26 @@ import { createDevTools, persistState } from 'redux-devtools';
 import LogMonitor from 'redux-devtools-log-monitor';
 import DockMonitor from 'redux-devtools-dock-monitor';
 
+export const config = {
+  environments: [
+    environments.CLIENT,
+    environments.DEVELOPMENT
+  ]
+};
+
 const DevTools = createDevTools(
   <DockMonitor toggleVisibilityKey="ctrl-h" changePositionKey="ctrl-q">
     <LogMonitor />
   </DockMonitor>
 );
 
-register(hooks.CREATE_ROOT_COMPONENT, ( promise ) => {
-  return promise.then(( props ) => ({
-      ...props,
-      additionalComponents: true
-    })
-  );
-}, {
-  position: positions.AFTER,
-  environments: [
-    environments.CLIENT,
-    environments.DEVELOPMENT
+register(hooks.CREATE_ROOT_COMPONENT, (props) => ({
+  ...props,
+  clientComponents: [
+    ...props.clientComponents,
+    <DevTools key="dev-tools"/>
   ]
-});
-
-register(hooks.UPDATE_ROOT_COMPONENT, ({ ...props, additionalComponents }) => {
-  return {
-    ...props,
-    additionalComponents: [
-      ...additionalComponents,
-      <DevTools key="devtools" />
-    ]
-  }
-}, {
+}), {
   position: positions.BEFORE,
   environments: [
     environments.CLIENT,
