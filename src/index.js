@@ -6,13 +6,6 @@ import { createDevTools, persistState } from 'redux-devtools';
 import LogMonitor from 'redux-devtools-log-monitor';
 import DockMonitor from 'redux-devtools-dock-monitor';
 
-export const config = {
-  environments: [
-    environments.CLIENT,
-    environments.DEVELOPMENT
-  ]
-};
-
 const DevTools = createDevTools(
   <DockMonitor toggleVisibilityKey="ctrl-h" changePositionKey="ctrl-q">
     <LogMonitor />
