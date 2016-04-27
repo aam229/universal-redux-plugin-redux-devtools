@@ -41,15 +41,3 @@ register(hooks.CREATE_REDUX_MIDDLEWARE, (middleware) => {
 });
 
 
-register(hooks.CREATE_REDUX_STORE, (store, { router }) => {
-  router.listenForReplays(store);
-  return store;
-}, {
-  position: positions.AFTER,
-  environments: [
-    environments.CLIENT,
-    environments.DEVELOPMENT
-  ]
-});
-
-
