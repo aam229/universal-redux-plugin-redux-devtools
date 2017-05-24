@@ -1,6 +1,6 @@
 import React from 'react'
 import { compose } from 'redux';
-import { hooks, environments, positions, register } from 'universal-redux/lib/hooks';
+import { hooks, environments, positions, register } from 'universal-redux';
 import { createDevTools, persistState } from 'redux-devtools';
 
 import LogMonitor from 'redux-devtools-log-monitor';
